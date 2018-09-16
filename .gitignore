@@ -1,0 +1,5 @@
+*.db
+*.private
+*.log
+secrets.sh
+global_chat.txt
