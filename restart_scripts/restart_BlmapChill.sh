@@ -1,5 +1,7 @@
 #!/bin/bash
+s_pwd=`pwd`
 source ../global.sh
+cd $s_pwd
 print_str="$*"
 #echo "printing $print_str";
 #../exp_rcon_api/say_exp_server.exp $EC_BLMAPCHILL_PASS $EC_BLMAPCHILL_PORT "$print_str"
