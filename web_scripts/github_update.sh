@@ -12,6 +12,7 @@ echo "Server keeps running<br/>"
 if [ "$USER" != "$DDPP_USER" ]
 then
     echo "Error: you=$USER != ddpp=$DDPP_USER"
+    exit
 fi
 
 # BUILD
@@ -34,7 +35,7 @@ mv chillblock_srv_d chillblock_srv_d_old
 
 echo "[UPDATE] BlmapChill server<br/>"
 cd $BL_PATH;
-cp $SRC_PATH/DDNetPP_d BlmapChill_srv_D
+cp $SRC_PATH/DDNetPP_d BlmapChill_srv_d
 
 echo "[UPDATE] chillblock server<br/>"
 cd $CB_PATH;
