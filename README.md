@@ -41,9 +41,9 @@ Add following bash code:
 
 ```
 #!/bin/bash
-if [ "$USER" != "$DDPP_USER" ]
+if [ "$USER" != "chiller" ]
 then
-    echo "Error: you=$USER != ddpp=$DDPP_USER"
+    echo "Error: you=$USER != ddpp=chiller"
     exit
 fi
 
