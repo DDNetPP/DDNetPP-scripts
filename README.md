@@ -29,7 +29,7 @@ www-data    ALL=(ALL)   NOPASSWD: /home/chiller/ddpp_database/web_scripts/cancle
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/github_update.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/restart_bot_cb.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/restart_bot_bl.sh
-www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scritps.sh
+www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scripts.sh
 ```
 
 Add the update scripts update script:
