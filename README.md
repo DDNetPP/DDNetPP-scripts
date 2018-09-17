@@ -36,6 +36,7 @@ Add the update scripts update script:
 
 ``vim /var/www/update_ddpp_scripts.sh``
 Add following bash code:
+
 ```
 #!/bin/bash
 if [ "$USER" != "$DDPP_USER" ]
