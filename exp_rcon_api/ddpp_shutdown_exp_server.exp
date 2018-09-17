@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+
+# script.exp pass port hour value(0/1)
+
+set timeout 20
+set password [lindex $argv 0]
+spawn telnet localhost [lindex $argv 1]
+set hour [lindex $argv 2]
+set value [lindex $argv 3]
+set current_telid $spawn_id
+
+expect "Enter password:"
+
+send "$password\n"
+
+sleep 3
+send "say \[DDNet++\] VetoVote shutdown updated value=$value hour=$hour \n"
+sleep 1
+send "sv_ddpp_shutdown $value \n"
+send "sv_ddpp_shutdown_hour $hour \n"
+
+
+
+
+#this is needed at the end to execute the last message c:
+sleep 1
