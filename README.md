@@ -35,6 +35,8 @@ www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scritps.sh
 Add the update scripts update script:
 
 ``vim /var/www/update_ddpp_scripts.sh``
+
+
 Add following bash code:
 
 ```
