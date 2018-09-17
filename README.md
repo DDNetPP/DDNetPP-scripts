@@ -55,7 +55,6 @@ echo "<br/>done.</br>"
 
 Add the user chiller as owner:
 ```
-
 chown chiller /var/www/update_ddpp_scripts.sh
 ```
 
