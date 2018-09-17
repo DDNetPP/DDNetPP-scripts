@@ -31,3 +31,21 @@ www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scri
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/restart_bot_bl.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scritps.sh
 ```
+
+Add the update scripts update script:
+
+``vim /var/www/update_ddpp_scripts.sh``
+Add following bash code:
+```
+#!/bin/bash
+if [ "$USER" != "$DDPP_USER" ]
+then
+    echo "Error: you=$USER != ddpp=$DDPP_USER"
+    exit
+fi
+
+cd
+cd ddpp_database
+git pull
+echo "<br/>done.</br>"
+```
