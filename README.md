@@ -30,6 +30,8 @@ www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scri
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/restart_bot_cb.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/restart_bot_bl.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scripts.sh
+www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/ddpp_shutdown_BlmapChill.sh
+www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/ddpp_shutdown_chillblock.sh
 ```
 
 Add the update scripts update script:
