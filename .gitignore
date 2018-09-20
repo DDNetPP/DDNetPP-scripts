@@ -1,5 +1,10 @@
 *.db
 *.private
 *.log
+*.acc
+*.dtb
+*.map
+password.cfg
+web_test_srv_d
 secrets.sh
 global_chat.txt

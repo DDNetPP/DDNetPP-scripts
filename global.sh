@@ -14,3 +14,7 @@ EC_BLMAPCHILL_PASS=$SECRET_EC_BLMAPCHILL_PASS # secrets.sh
 CB_PATH=/home/$ddpp_user/chillblock
 BL_PATH=/home/$ddpp_user/BlmapChill
 SRC_PATH=/home/$ddpp_user/git/DDNetPP
+
+#web stuff
+WEB_SCRIPTS_PATH=/home/$ddpp_user/ddpp_database/web_scripts
+WEB_TEST_PATH=$WEB_SCRIPTS_PATH/test_srv
