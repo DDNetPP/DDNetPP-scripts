@@ -32,6 +32,9 @@ www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scri
 www-data    ALL=(chiller:chiller) NOPASSWD: /var/www/update_ddpp_scripts.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/ddpp_shutdown_BlmapChill.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/ddpp_shutdown_chillblock.sh
+www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/init_restart.sh
+www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/cancle_restart.sh
+
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/test_srv/start.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/test_srv/stop.sh
 www-data    ALL=(chiller:chiller) NOPASSWD: /home/chiller/ddpp_database/web_scripts/test_srv/github_update.sh
