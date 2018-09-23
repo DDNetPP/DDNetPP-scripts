@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p latest_accounts
 while :
 do
     rm latest_accounts/accounts_backup.db #oldest
