@@ -10,4 +10,4 @@
 [INFO] Finishing the map gives some xp.
 [INFO] Check '/shop' to buy some cool stuff.
 [INFO] We also have bomb here. Check '/bomb'.
-[INFO] Join the official DDNet++ Discord channel!: 'https://discord.gg/Kh2B87M'
+[INFO] Join the DDNet++ Discord!: 'https://discord.gg/Kh2B87M'
