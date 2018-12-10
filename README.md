@@ -6,7 +6,7 @@ A repo holding all scripts that run DDNet++
 You need apache2 installed an running for the website.
 ```
 cd /var/www/html/
-git clone https://github.com/ChillerDragon/DDNet-web
+git clone https://github.com/DDNetPP/DDNet-web
 ```
 
 Then you need the two server directorys
@@ -18,7 +18,7 @@ mkdir chillblock
 mkdir BlmapChill
 mkdir git
 cd git
-git clone https://github.com/ChillerDragon/DDNetPP
+git clone https://github.com/DDNetPP/DDNetPP
 ```
 
 For the supporter server panel on the website you have to edit ``visudo``
