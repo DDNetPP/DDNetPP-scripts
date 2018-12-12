@@ -6,13 +6,14 @@ function donor_stats() {
     now_ts=$(date +%s)
     time_end=$(date -d "@$end_ts" +%F)
 
-    printf "[$time_start - $time_end]"
-    printf " id: $2"
-    echo " days left [$(( ( end_ts - now_ts)/(60*60*24) ))]"
+    echo "[$time_start - $time_end] days left [$(( ( end_ts - now_ts)/(60*60*24) ))]"
 }
 
 mkdir -p donors
-echo "== donors status =="
+echo "+---------------------+"
+echo "|    donors status    |"
+echo "+---------------------+"
+echo ""
 
 for donor in donors/*.txt;
 do
@@ -23,4 +24,6 @@ do
     #echo "date: $d_date"
     #echo "id: $d_id"
     donor_stats $d_date $d_id
+    cat $donor
+    echo ""
 done
