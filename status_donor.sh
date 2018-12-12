@@ -3,11 +3,12 @@ function donor_stats() {
     time_start=$1
     start_ts=$(date -d "$time_start" '+%s')
     end_ts=$(date -d "$time_start +60 days" '+%s')
+    now_ts=$(date +%s)
     time_end=$(date -d "@$end_ts" +%F)
 
     printf "[$time_start - $time_end]"
     printf " id: $2"
-    echo " days left [$(( ( end_ts - start_ts)/(60*60*24) ))]"
+    echo " days left [$(( ( end_ts - now_ts)/(60*60*24) ))]"
 }
 
 mkdir -p donors
