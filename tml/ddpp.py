@@ -2,6 +2,7 @@ import os
 
 from tml.tml import Teemap
 from tml.constants import TML_DIR, TILEINDEX
+from tml.items import Layer, TileLayer, TileManager, Tile
 
 
 print(TML_DIR)
@@ -27,3 +28,10 @@ for tile in t.gamelayer.tiles:
 
 for k, v in pickups.iteritems():
     print '{value:3}x {key}'.format(value=v, key=k)
+
+t.gamelayer.tiles[0] = Tile(3) # set first tile x/y 0/0 to unhook
+t.gamelayer.set_tile(2, 0, Tile(2)) # zilli dreghun stinkt c:
+print("should be air(0): " + str(t.gamelayer.get_tile(5,6)))
+print("should be shield(197): " + str(t.gamelayer.get_tile(3,7)))
+print("should be spawn(192): " + str(t.gamelayer.get_tile(10,10)))
+t.save('tml_map')
