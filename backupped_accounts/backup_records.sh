@@ -40,6 +40,6 @@ do
 
     #sleep backup rave repeat
     echo "[ SLEEP ] waiting 6 hours for next backup"
-    sleep 6h
+    sleep 48h
 done
 
