@@ -1,9 +1,0 @@
-the folder "very_old"
-holds some old randomly backupped databases
-
-the folder "latest_accounts"
-is managed by the backup_accounts.sh script which
-backups all 12h the current accounts.db from ddpp_database/accounts.db
-and then deletes the oldest (accounts_backup.db)
-so if you want to check the latest update you have to search for
-"accounts_backup22.db" #or the highest number if this script gets updated

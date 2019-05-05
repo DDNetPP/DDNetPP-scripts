@@ -1,8 +1,9 @@
 #!/bin/bash
+mkdir -p logs
 ./stop_backup_scripts.sh
-nohup ./backup_accounts.sh > /dev/null 2>&1 &
-nohup ./backup_longterm.sh > /dev/null 2>&1 &
-nohup ./backup_records.sh > rec_backup.log 2>&1 &
+nohup ./private/backup_accounts.sh > logs/acc_backup.log 2>&1 &
+nohup ./private/backup_longterm.sh > logs/long_backup.log 2>&1 &
+nohup ./public/backup_records.sh > logs/rec_backup.log 2>&1 &
 echo "==================";
 echo "backup_accounts.sh";
 echo "backup_longterm.sh";

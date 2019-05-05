@@ -18,6 +18,9 @@ SRC_PATH=/home/$ddpp_user/git/DDNetPP
 CB_REC_FILE=$CB_PATH/records/ChillBlock5_record.dtb
 BL_REC_FILE=$BL_PATH/records/BlmapChill_record.dtb
 
+PUBLIC_DATA_DIR=/home/$ddpp_user/git/DDNetPP-data
+PRIVATE_DATA_DIR=/home/$ddpp_user/git/TeeworldsData
+
 #web stuff
 WEB_SCRIPTS_PATH=/home/$ddpp_user/ddpp_database/web_scripts
 WEB_TEST_PATH=$WEB_SCRIPTS_PATH/test_srv

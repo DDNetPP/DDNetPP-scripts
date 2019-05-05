@@ -1,7 +1,22 @@
 #!/bin/bash
+s_pwd=`pwd`
+source ../global.sh
+cd $s_pwd
+if [ -z ${PRIVATE_DATA_DIR+x} ]
+then
+    echo "failed to import global.sh <br/>";
+    echo "pwd: <br/>"
+    echo `pwd`
+    echo "<br/>"
+    exit
+fi
+
+cd $PRIVATE_DATA_DIR
+
 mkdir -p latest_accounts
 while :
 do
+    echo "[$(date +%F_%H-%M-%S)] backup account (5min interval)..."
     rm latest_accounts/accounts_backup.db #oldest
     mv latest_accounts/accounts_backup1.db latest_accounts/accounts_backup.db
     mv latest_accounts/accounts_backup2.db latest_accounts/accounts_backup1.db
@@ -41,7 +56,7 @@ do
     mv latest_accounts/accounts_backup36.db latest_accounts/accounts_backup35.db
     mv latest_accounts/accounts_backup37.db latest_accounts/accounts_backup36.db
     mv latest_accounts/accounts_backup38.db latest_accounts/accounts_backup37.db
-    cp ../accounts.db latest_accounts/accounts_backup38.db #newest
+    cp accounts.db latest_accounts/accounts_backup38.db #newest
 
     sleep 5m
 done
