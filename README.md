@@ -67,3 +67,4 @@ Add the user chiller as owner:
 chown chiller /var/www/update_ddpp_scripts.sh
 ```
 
+Create a ``web_scripts/status.private`` file containing a server name on each line. This is used for the server panel on the website to montitor uptime.
