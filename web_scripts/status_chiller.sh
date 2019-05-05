@@ -1,10 +1,18 @@
 #!/bin/bash
 
+status_file=status.private
 psaux=`ps aux`
 ishtml=0
 if [ "$1" == "html" ]
 then
 	ishtml=1
+fi
+
+if [ ! -f "$status_file" ]
+then
+	echo "ERROR '$status_file' file not found."
+	echo "Make sure it is created and you executed the script from the correct directory."
+	exit
 fi
 
 function html_success() {
@@ -47,5 +55,5 @@ function proc_status() {
 while read line
 do
 	proc_status $line
-done < status.private
+done < $status_file
 
