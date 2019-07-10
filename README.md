@@ -18,7 +18,7 @@ mkdir chillblock
 mkdir BlmapChill
 mkdir git
 cd git
-git clone https://github.com/DDNetPP/DDNetPP
+git clone --recursive https://github.com/DDNetPP/DDNetPP
 ```
 
 For the supporter server panel on the website you have to edit ``visudo``
