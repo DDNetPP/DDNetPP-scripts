@@ -19,6 +19,7 @@ fi
 echo "[SRC] fetch and build new source<br/>"
 cd $SRC_PATH
 git pull
+git submodule update
 ./bam server_debug
 echo "<br/>"
 
