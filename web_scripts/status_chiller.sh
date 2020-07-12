@@ -1,7 +1,7 @@
 #!/bin/bash
 
 status_file=status.private
-psaux=`ps aux`
+psaux="$(ps aux)"
 ishtml=0
 if [ "$1" == "html" ]
 then
@@ -33,27 +33,27 @@ function c_red() {
 
 function proc_status() {
 	local procname=$1
-	if echo $psaux | grep $procname | grep -qv grep;
+	if echo "$psaux" | grep "$procname" | grep -qv grep;
 	then
 		if [ "$ishtml" == "1" ]
 		then
-			html_success $procname
+			html_success "$procname"
 		else
-			printf "["; c_green "+";printf "] $procname\n";
+			printf "["; c_green "+";printf "] %s\\n" "$procname";
 			# c_green .
 		fi
 	else
 		if [ "$ishtml" == "1" ]
 		then
-			html_fail $procname
+			html_fail "$procname"
 		else
-			printf "["; c_red "-";printf "] $procname\n";
+			printf "["; c_red "-";printf "] %s\\n" "$procname";
 		fi
 	fi
 }
 
-while read line
+while read -r line
 do
-	proc_status $line
-done < $status_file
+	proc_status "$line"
+done < "$status_file"
 
