@@ -1,59 +1,176 @@
 #!/bin/bash
 
-status_file=status.private
+Reset='\033[0m'
+Red='\033[0;31m'
+Green='\033[0;32m'
+
+PRIVATE_FILE=status.private
+PUBLIC_FILE=status.public
 psaux="$(ps aux)"
 ishtml=0
-if [ "$1" == "html" ]
+isslim=0
+
+if [[ "$1" == "help" ]] || [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]
+then
+    echo "usage: $(basename "$0") [ARG]"
+    echo "args:"
+    echo "  help - shows this help"
+    echo "  html - prints html version"
+    echo "  slim - prints light weight cli version"
+    exit 0
+elif [[ "$1" == "html" ]] || [[ "$1" == "--html" ]]
 then
 	ishtml=1
+elif [[ "$1" == "slim" ]] || [[ "$1" == "--slim" ]]
+then
+    isslim=1
 fi
 
-if [ ! -f "$status_file" ]
+if [ ! -f "$PUBLIC_FILE" ]
 then
-	echo "ERROR '$status_file' file not found."
+	echo "ERROR '$PUBLIC_FILE' file not found."
 	echo "Make sure it is created and you executed the script from the correct directory."
 	exit
 fi
 
 function html_success() {
-	echo "<div>[<span style=\"color: green\">RUNNING</span>] $1</div>"
+    local proc=$1
+    local slots=$2
+    color=green
+    if [ "$slots" == "0/0" ]
+    then
+        color=red
+    fi
+	echo -n "<div>"
+    echo -n "[<span style=\"color: green\">RUNNING</span>] $proc <strong style=\"color: $color\">$slots</strong>"
+    echo -n "</div>"
 }
 
 function html_fail() {
 	echo "<div>[<span style=\"color: red\">DOWN</span>] $1</div>"
 }
 
-function c_green() {
-	printf "\e[1;32m%s\e[0m" "$1"
-}
-
-function c_red() {
-	printf "\e[1;31m%s\e[0m" "$1"
-}
-
 function proc_status() {
 	local procname=$1
+    local slots=$2
 	if echo "$psaux" | grep "$procname" | grep -qv grep;
 	then
 		if [ "$ishtml" == "1" ]
 		then
-			html_success "$procname"
+			html_success "$procname" "$slots"
 		else
-			printf "["; c_green "+";printf "] %s\\n" "$procname";
-			# c_green .
+            if [ "$isslim" == "0" ]
+            then
+                if [ "$slots" == "0/0" ]
+                then
+                    printf "[%b+%b] %s %b%s%b" \
+                        "$Green" "$Reset" "$procname" "$Red" "$(tput bold)$slots$(tput sgr0)" "$Reset";
+                else
+                    printf "[%b+%b] %s %s" "$Green" "$Reset" "$procname" "$(tput bold)$slots$(tput sgr0)";
+                fi
+            else
+                printf "%b.%b" "$Green" "$Reset"
+            fi
 		fi
 	else
 		if [ "$ishtml" == "1" ]
 		then
 			html_fail "$procname"
 		else
-			printf "["; c_red "-";printf "] %s\\n" "$procname";
+			printf "[%s-%s] %s" "$Red" "$Reset" "$procname";
 		fi
 	fi
 }
 
+STATUSTW_API='https://api.status.tw/2.0/server/list/'
+
+function is_cached() {
+    local file=$1
+    local last
+    local diff
+    local linenum
+    now="$(date '+%s')"
+    if [ ! -f "$file" ]
+    then
+        echo "$now" > "$file"
+        return 1
+    fi
+    last="$(head -n1 "$file")"
+    if [[ ! "$last" =~ ^[0-9]*$ ]]
+    then
+        echo "$now" > "$file"
+        return 1
+    fi
+    linenum="$(wc -l "$file" | cut -d' ' -f1)"
+    if [[ "$linenum" -lt "2" ]]
+    then
+        echo "$now" > "$file"
+        return 1
+    fi
+    diff="$((now - last))"
+    if [ "$diff" -gt "60" ]
+    then
+        echo "$now" > "$file"
+        return 1
+    fi
+    return 0
+}
+
+function twip_status() {
+    local twip=$1
+    local ip
+    local port
+    local num_clients
+    local max_clients
+    local cache_file
+    if [ "$twip" == "" ]
+    then
+        return
+    fi
+    if [[ "$twip" =~ ^[0-9\.:]$ ]]
+    then
+        echo "Error: invalid ip '$twip'"
+        return
+    fi
+    ip="$(echo "$twip" | cut -d':' -f1)"
+    port="$(echo "$twip" | cut -d':' -f2)"
+    cache_file="/tmp/ddpp_status_req_$ip-$port.txt"
+    if ! is_cached "$cache_file"
+    then
+        curl --silent "$STATUSTW_API?ip=$ip&port=$port" >> "$cache_file"
+        echo "" >> "$cache_file"
+    fi
+    num_clients="$(sed -n '2,$p' "$cache_file" \
+        | jq '.["servers"][]."num_clients"')"
+    max_clients="$(sed -n '2,$p' "$cache_file" \
+        | jq '.["servers"][]."max_clients"')"
+    printf "%d/%d" "$num_clients" "$max_clients"
+}
+
+function cat_files() {
+    if [ -f "$PUBLIC_FILE" ]
+    then
+        cat "$PUBLIC_FILE"
+    fi
+    if [ -f "$PRIVATE_FILE" ]
+    then
+        cat "$PRIVATE_FILE"
+    fi
+}
+
 while read -r line
 do
-	proc_status "$line"
-done < "$status_file"
+    procname="$(echo "$line" | awk '{ print $1 }')"
+    twip="$(echo "$line" | awk '{ print $2 }')"
+    if [ "$isslim" == "0" ]
+    then
+        slots="$(twip_status "$twip")"
+    fi
+	proc_status "$procname" "$slots"
+    if [ "$isslim" == "0" ]
+    then
+        echo ""
+    fi
+done < <(cat_files)
+echo ""
 

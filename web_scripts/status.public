@@ -1,0 +1,15 @@
+pstd_server.pl
+BlmapChill 149.202.127.134:8306
+chillblock 149.202.127.134:8303
+vanilla_srv 149.202.127.134:8304
+vanilla7_srv 149.202.127.134:8704
+bin/fddrace 149.202.127.134:7303
+bin/fly 149.202.127.134:8702
+bin/v3royal 149.202.127.134:8707
+bin/crackmod 149.202.127.134:8705
+bin/fng 149.202.127.134:8708
+commit.sh
+minecraft
+minecraft-list.sh
+sheepit-client
+irc

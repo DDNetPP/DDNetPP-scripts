@@ -5,7 +5,7 @@ A repo holding all scripts that run DDNet++
 
 dependencys on debian based systems:
 ```
-sudo apt install git php apache2 php-sqlite3
+sudo apt install git php apache2 php-sqlite3 jq
 ```
 
 You need apache2 installed an running for the website.
