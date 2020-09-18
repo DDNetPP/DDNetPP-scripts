@@ -165,10 +165,15 @@ do
         continue
     fi
     procname="$(echo "$line" | awk '{ print $1 }')"
-    twip="$(echo "$line" | awk '{ print $2 }')"
+    arg="$(echo "$line" | awk '{$1=""; print substr($0,2)}')"
     if [ "$isslim" == "0" ]
     then
-        slots="$(twip_status "$twip")"
+        if [ "${arg:0:1}" == "$" ] # shell command
+        then
+            slots="$(eval "${arg:1}")"
+        else # teeworlds ip
+            slots="$(twip_status "$arg")"
+        fi
     fi
 	proc_status "$procname" "$slots"
     if [ "$isslim" == "0" ]
