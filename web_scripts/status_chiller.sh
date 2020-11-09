@@ -53,7 +53,7 @@ function html_fail() {
 function proc_status() {
 	local procname=$1
     local slots=$2
-	if echo "$psaux" | grep "$procname" | grep -qv grep;
+	if [[ "$procname" =~ extern_* ]] || echo "$psaux" | grep "$procname" | grep -qv grep;
 	then
 		if [ "$ishtml" == "1" ]
 		then
