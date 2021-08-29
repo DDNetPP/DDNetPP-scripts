@@ -17,4 +17,4 @@ minecraft
 minecraft-list.sh
 sheepit-client
 irc $pings="$(/home/chiller/.weechat/pings.sh | wc -l)" && printf "%d total %d new pings\n" "$pings" "$((pings - $(cat /tmp/ddpp_status_irc.txt)))" && echo "$pings" > /tmp/ddpp_status_irc.txt
-matterbridge
+# matterbridge
