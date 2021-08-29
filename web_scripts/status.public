@@ -13,8 +13,8 @@ bin/ddnet-gctf 149.202.127.134:8707
 # bin/crackmod 149.202.127.134:8705
 bin/fng 149.202.127.134:8708
 commit.sh
-minecraft
-minecraft-list.sh
-sheepit-client
+# minecraft
+# minecraft-list.sh
+# sheepit-client
 irc $pings="$(/home/chiller/.weechat/pings.sh | wc -l)" && printf "%d total %d new pings\n" "$pings" "$((pings - $(cat /tmp/ddpp_status_irc.txt)))" && echo "$pings" > /tmp/ddpp_status_irc.txt
 # matterbridge
