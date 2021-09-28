@@ -1,13 +1,16 @@
 #!/bin/bash
-mkdir -p donors
+mkdir -rp donors
 echo "== Add a donor =="
 
-read -p "sqlid> " sqlid
-read -p "accname> " accname
-read -p "rank> " rank
-read -p "ingame> " ingame
+read -rp "sqlid> " sqlid
+read -rp "accname> " accname
+read -rp "rank> " rank
+read -rp "ingame> " ingame
 
-echo $sqlid > donors/$(date +%F)_$sqlid.txt
-echo $accname >> donors/$(date +%F)_$sqlid.txt
-echo $rank >> donors/$(date +%F)_$sqlid.txt
-echo $ingame >> donors/$(date +%F)_$sqlid.txt
+{
+	echo "$sqlid"
+	echo "$accname"
+	echo "$rank"
+	echo "$ingame"
+} > "donors/$(date +%F)_$sqlid.txt"
+
