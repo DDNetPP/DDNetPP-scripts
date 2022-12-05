@@ -6,18 +6,24 @@ extern_ctf5_7 139.59.215.82:8704
 # vanilla_srv 149.202.127.134:8304
 # vanilla7_srv 149.202.127.134:8704
 # bin/fddrace 149.202.127.134:7303
-bin/fddrace 51.210.171.47:7303
-fddrace-web.js
+# bin/fddrace 51.210.171.47:7303
+# fddrace-web.js
+# traffic_logger.sh
 tee-captcha.js
-traffic_logger.sh
+chillerbot-api-srv.js
+main.py[[:space:]]--api-keys
+maps-zillyhuhn.com.sh
 # bin/fly 149.202.127.134:8702
 # bin/v3royal 149.202.127.134:8707
 bin/ddnet-gctf 149.202.127.134:8707
-# bin/crackmod 149.202.127.134:8705
-bin/fng 149.202.127.134:8708
-commit.sh
 # minecraft
 # minecraft-list.sh
 # sheepit-client
 irc $pings="$(/home/chiller/.weechat/pings.sh | wc -l)" && printf "%d total %d new pings\n" "$pings" "$((pings - $(cat /tmp/ddpp_status_irc.txt)))" && echo "$pings" > /tmp/ddpp_status_irc.txt
 # matterbridge
+
+# idc flyland currently replaces the fng server
+idc
+
+# bin/fng 149.202.127.134:8708
+# commit.sh

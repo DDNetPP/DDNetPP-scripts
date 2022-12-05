@@ -150,11 +150,11 @@ function twip_status() {
 function cat_files() {
     if [ -f "$PUBLIC_FILE" ]
     then
-        cat "$PUBLIC_FILE"
+        awk NF "$PUBLIC_FILE"
     fi
     if [ -f "$PRIVATE_FILE" ]
     then
-        cat "$PRIVATE_FILE"
+        awk NF "$PRIVATE_FILE"
     fi
 }
 
